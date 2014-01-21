@@ -222,7 +222,7 @@ public abstract class AbsActionBarView extends NineViewGroup {
 
     protected int measureChildView(View child, int availableWidth, int childSpecHeight,
             int spacing) {
-        child.measure(View.MeasureSpec.makeMeasureSpec(availableWidth, View.MeasureSpec.AT_MOST),
+        child.measure(MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.AT_MOST),
                 childSpecHeight);
 
         availableWidth -= child.getMeasuredWidth();

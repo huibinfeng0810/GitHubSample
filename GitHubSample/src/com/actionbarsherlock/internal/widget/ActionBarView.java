@@ -131,7 +131,7 @@ public class ActionBarView extends AbsActionBarView {
         }
     };
 
-    private final View.OnClickListener mExpandedActionViewUpListener = new View.OnClickListener() {
+    private final OnClickListener mExpandedActionViewUpListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             final MenuItemImpl item = mExpandedMenuPresenter.mCurrentExpandedItem;
@@ -141,7 +141,7 @@ public class ActionBarView extends AbsActionBarView {
         }
     };
 
-    private final View.OnClickListener mUpClickListener = new View.OnClickListener() {
+    private final OnClickListener mUpClickListener = new OnClickListener() {
         public void onClick(View v) {
             mWindowCallback.onMenuItemSelected(Window.FEATURE_OPTIONS_PANEL, mLogoNavItem);
         }
@@ -263,10 +263,10 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         if (mTabScrollView != null && mIncludeTabs) {
-            ViewGroup.LayoutParams lp = mTabScrollView.getLayoutParams();
+            LayoutParams lp = mTabScrollView.getLayoutParams();
             if (lp != null) {
-                lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-                lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                lp.width = LayoutParams.WRAP_CONTENT;
+                lp.height = LayoutParams.MATCH_PARENT;
             }
             mTabScrollView.setAllowCollapse(true);
         }
@@ -347,9 +347,9 @@ public class ActionBarView extends AbsActionBarView {
         mIncludeTabs = tabs != null;
         if (mIncludeTabs && mNavigationMode == ActionBar.NAVIGATION_MODE_TABS) {
             addView(mTabScrollView);
-            ViewGroup.LayoutParams lp = mTabScrollView.getLayoutParams();
-            lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-            lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            LayoutParams lp = mTabScrollView.getLayoutParams();
+            lp.width = LayoutParams.WRAP_CONTENT;
+            lp.height = LayoutParams.MATCH_PARENT;
             tabs.setAllowCollapse(true);
         }
     }
@@ -382,8 +382,8 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         ActionMenuView menuView;
-        final ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+        final LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.MATCH_PARENT);
         if (!mSplitActionBar) {
             mActionMenuPresenter.setExpandedActionViewsExclusive(
                     getResources_getBoolean(getContext(),
@@ -403,7 +403,7 @@ public class ActionBarView extends AbsActionBarView {
             // No limit to the item count; use whatever will fit.
             mActionMenuPresenter.setItemLimit(Integer.MAX_VALUE);
             // Span the whole width
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            layoutParams.width = LayoutParams.MATCH_PARENT;
             configPresenters(builder);
             menuView = (ActionMenuView) mActionMenuPresenter.getMenuView(this);
             if (mSplitView != null) {
@@ -642,7 +642,7 @@ public class ActionBarView extends AbsActionBarView {
                     mListNavLayout = (IcsLinearLayout) LayoutInflater.from(mContext)
                             .inflate(R.layout.abs__action_bar_tab_bar_view, null);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                            LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
                     params.gravity = Gravity.CENTER;
                     mListNavLayout.addView(mSpinner, params);
                 }
@@ -695,7 +695,7 @@ public class ActionBarView extends AbsActionBarView {
     }
 
     @Override
-    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+    protected LayoutParams generateDefaultLayoutParams() {
         // Used by custom nav views if they don't supply layout params. Everything else
         // added to an ActionBarView should have them already.
         return new ActionBar.LayoutParams(DEFAULT_CUSTOM_GRAVITY);
@@ -792,28 +792,28 @@ public class ActionBarView extends AbsActionBarView {
         }
         mIsCollapsed = false;
 
-        int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
-        if (widthMode != View.MeasureSpec.EXACTLY) {
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        if (widthMode != MeasureSpec.EXACTLY) {
             throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
                     "with android:layout_width=\"match_parent\" (or fill_parent)");
         }
 
-        int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
-        if (heightMode != View.MeasureSpec.AT_MOST) {
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        if (heightMode != MeasureSpec.AT_MOST) {
             throw new IllegalStateException(getClass().getSimpleName() + " can only be used " +
                     "with android:layout_height=\"wrap_content\"");
         }
 
-        int contentWidth = View.MeasureSpec.getSize(widthMeasureSpec);
+        int contentWidth = MeasureSpec.getSize(widthMeasureSpec);
 
         int maxHeight = mContentHeight > 0 ?
-                mContentHeight : View.MeasureSpec.getSize(heightMeasureSpec);
+                mContentHeight : MeasureSpec.getSize(heightMeasureSpec);
 
         final int verticalPadding = getPaddingTop() + getPaddingBottom();
         final int paddingLeft = getPaddingLeft();
         final int paddingRight = getPaddingRight();
         final int height = maxHeight - verticalPadding;
-        final int childSpecHeight = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST);
+        final int childSpecHeight = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
 
         int availableWidth = contentWidth - paddingLeft - paddingRight;
         int leftOfCenter = availableWidth / 2;
@@ -822,15 +822,15 @@ public class ActionBarView extends AbsActionBarView {
         HomeView homeLayout = mExpandedActionView != null ? mExpandedHomeLayout : mHomeLayout;
 
         if (homeLayout.getVisibility() != GONE) {
-            final ViewGroup.LayoutParams lp = homeLayout.getLayoutParams();
+            final LayoutParams lp = homeLayout.getLayoutParams();
             int homeWidthSpec;
             if (lp.width < 0) {
-                homeWidthSpec = View.MeasureSpec.makeMeasureSpec(availableWidth, View.MeasureSpec.AT_MOST);
+                homeWidthSpec = MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.AT_MOST);
             } else {
-                homeWidthSpec = View.MeasureSpec.makeMeasureSpec(lp.width, View.MeasureSpec.EXACTLY);
+                homeWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
             }
             homeLayout.measure(homeWidthSpec,
-                    View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+                    MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
             final int homeWidth = homeLayout.getMeasuredWidth() + homeLayout.getLeftOffset();
             availableWidth = Math.max(0, availableWidth - homeWidth);
             leftOfCenter = Math.max(0, availableWidth - homeWidth);
@@ -861,8 +861,8 @@ public class ActionBarView extends AbsActionBarView {
                         availableWidth = Math.max(0, availableWidth - itemPaddingSize);
                         leftOfCenter = Math.max(0, leftOfCenter - itemPaddingSize);
                         mListNavLayout.measure(
-                                View.MeasureSpec.makeMeasureSpec(availableWidth, View.MeasureSpec.AT_MOST),
-                                View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+                                MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.AT_MOST),
+                                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
                         final int listNavWidth = mListNavLayout.getMeasuredWidth();
                         availableWidth = Math.max(0, availableWidth - listNavWidth);
                         leftOfCenter = Math.max(0, leftOfCenter - listNavWidth);
@@ -874,8 +874,8 @@ public class ActionBarView extends AbsActionBarView {
                         availableWidth = Math.max(0, availableWidth - itemPaddingSize);
                         leftOfCenter = Math.max(0, leftOfCenter - itemPaddingSize);
                         mTabScrollView.measure(
-                                View.MeasureSpec.makeMeasureSpec(availableWidth, View.MeasureSpec.AT_MOST),
-                                View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+                                MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.AT_MOST),
+                                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
                         final int tabWidth = mTabScrollView.getMeasuredWidth();
                         availableWidth = Math.max(0, availableWidth - tabWidth);
                         leftOfCenter = Math.max(0, leftOfCenter - tabWidth);
@@ -893,7 +893,7 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         if (customView != null) {
-            final ViewGroup.LayoutParams lp = generateLayoutParams(customView.getLayoutParams());
+            final LayoutParams lp = generateLayoutParams(customView.getLayoutParams());
             final ActionBar.LayoutParams ablp = lp instanceof ActionBar.LayoutParams ?
                     (ActionBar.LayoutParams) lp : null;
 
@@ -908,16 +908,16 @@ public class ActionBarView extends AbsActionBarView {
             // view to MATCH_PARENT.
             int customNavHeightMode;
             if (mContentHeight <= 0) {
-                customNavHeightMode = View.MeasureSpec.AT_MOST;
+                customNavHeightMode = MeasureSpec.AT_MOST;
             } else {
-                customNavHeightMode = lp.height != ViewGroup.LayoutParams.WRAP_CONTENT ?
-                        View.MeasureSpec.EXACTLY : View.MeasureSpec.AT_MOST;
+                customNavHeightMode = lp.height != LayoutParams.WRAP_CONTENT ?
+                        MeasureSpec.EXACTLY : MeasureSpec.AT_MOST;
             }
             final int customNavHeight = Math.max(0,
                     (lp.height >= 0 ? Math.min(lp.height, height) : height) - verticalMargin);
 
-            final int customNavWidthMode = lp.width != ViewGroup.LayoutParams.WRAP_CONTENT ?
-                    View.MeasureSpec.EXACTLY : View.MeasureSpec.AT_MOST;
+            final int customNavWidthMode = lp.width != LayoutParams.WRAP_CONTENT ?
+                    MeasureSpec.EXACTLY : MeasureSpec.AT_MOST;
             int customNavWidth = Math.max(0,
                     (lp.width >= 0 ? Math.min(lp.width, availableWidth) : availableWidth)
                     - horizontalMargin);
@@ -926,19 +926,19 @@ public class ActionBarView extends AbsActionBarView {
 
             // Centering a custom view is treated specially; we try to center within the whole
             // action bar rather than in the available space.
-            if (hgrav == Gravity.CENTER_HORIZONTAL && lp.width == ViewGroup.LayoutParams.MATCH_PARENT) {
+            if (hgrav == Gravity.CENTER_HORIZONTAL && lp.width == LayoutParams.MATCH_PARENT) {
                 customNavWidth = Math.min(leftOfCenter, rightOfCenter) * 2;
             }
 
             customView.measure(
-                    View.MeasureSpec.makeMeasureSpec(customNavWidth, customNavWidthMode),
-                    View.MeasureSpec.makeMeasureSpec(customNavHeight, customNavHeightMode));
+                    MeasureSpec.makeMeasureSpec(customNavWidth, customNavWidthMode),
+                    MeasureSpec.makeMeasureSpec(customNavHeight, customNavHeightMode));
             availableWidth -= horizontalMargin + customView.getMeasuredWidth();
         }
 
         if (mExpandedActionView == null && showTitle) {
             availableWidth = measureChildView(mTitleLayout, availableWidth,
-                    View.MeasureSpec.makeMeasureSpec(mContentHeight, View.MeasureSpec.EXACTLY), 0);
+                    MeasureSpec.makeMeasureSpec(mContentHeight, MeasureSpec.EXACTLY), 0);
             leftOfCenter = Math.max(0, leftOfCenter - mTitleLayout.getMeasuredWidth());
         }
 
@@ -961,9 +961,9 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         if (mProgressView != null && mProgressView.getVisibility() != GONE) {
-            mProgressView.measure(View.MeasureSpec.makeMeasureSpec(
-                    contentWidth - mProgressBarPadding * 2, View.MeasureSpec.EXACTLY),
-                    View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), View.MeasureSpec.AT_MOST));
+            mProgressView.measure(MeasureSpec.makeMeasureSpec(
+                    contentWidth - mProgressBarPadding * 2, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.AT_MOST));
         }
     }
 
@@ -1029,7 +1029,7 @@ public class ActionBarView extends AbsActionBarView {
             customView = mCustomNavView;
         }
         if (customView != null) {
-            ViewGroup.LayoutParams lp = customView.getLayoutParams();
+            LayoutParams lp = customView.getLayoutParams();
             final ActionBar.LayoutParams ablp = lp instanceof ActionBar.LayoutParams ?
                     (ActionBar.LayoutParams) lp : null;
 
@@ -1107,12 +1107,12 @@ public class ActionBarView extends AbsActionBarView {
     }
 
     @Override
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new ActionBar.LayoutParams(getContext(), attrs);
     }
 
     @Override
-    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams lp) {
+    public LayoutParams generateLayoutParams(LayoutParams lp) {
         if (lp == null) {
             lp = generateDefaultLayoutParams();
         }
@@ -1152,7 +1152,7 @@ public class ActionBarView extends AbsActionBarView {
         }
     }
 
-    static class SavedState extends View.BaseSavedState {
+    static class SavedState extends BaseSavedState {
         int expandedMenuItemId;
         boolean isOverflowOpen;
 

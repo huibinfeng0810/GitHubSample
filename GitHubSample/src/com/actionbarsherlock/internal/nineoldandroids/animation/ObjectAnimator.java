@@ -343,7 +343,7 @@ public final class ObjectAnimator extends ValueAnimator {
             //if (mProperty != null) {
             //    setValues(PropertyValuesHolder.ofObject(mProperty, (TypeEvaluator)null, values));
             //} else {
-                setValues(PropertyValuesHolder.ofObject(mPropertyName, (TypeEvaluator)null, values));
+                setValues(PropertyValuesHolder.ofObject(mPropertyName, (TypeEvaluator) null, values));
             //}
         } else {
             super.setObjectValues(values);
