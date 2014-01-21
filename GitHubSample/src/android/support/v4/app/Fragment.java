@@ -157,16 +157,16 @@ final class FragmentState implements Parcelable {
 public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener {
     private static final SimpleArrayMap<String, Class<?>> sClassMap =
             new SimpleArrayMap<String, Class<?>>();
-    
+
     static final int INITIALIZING = 0;     // Not yet created.
     static final int CREATED = 1;          // Created.
     static final int ACTIVITY_CREATED = 2; // The activity has finished its creation.
     static final int STOPPED = 3;          // Fully created, not started.
     static final int STARTED = 4;          // Created and started, not resumed.
     static final int RESUMED = 5;          // Created started and resumed.
-    
+
     int mState = INITIALIZING;
-    
+
     // Non-null if the fragment's view hierarchy is currently animating away,
     // meaning we need to wait a bit on completely destroying it.  This is the
     // view that is animating.
@@ -179,13 +179,13 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
     // When instantiated from saved state, this is the saved state.
     Bundle mSavedFragmentState;
     SparseArray<Parcelable> mSavedViewState;
-    
+
     // Index into active fragment array.
     int mIndex = -1;
-    
+
     // Internal unique name for this fragment;
     String mWho;
-    
+
     // Construction arguments;
     Bundle mArguments;
 
@@ -200,25 +200,25 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
 
     // True if the fragment is in the list of added fragments.
     boolean mAdded;
-    
+
     // If set this fragment is being removed from its activity.
     boolean mRemoving;
 
     // True if the fragment is in the resumed state.
     boolean mResumed;
-    
+
     // Set to true if this fragment was instantiated from a layout file.
     boolean mFromLayout;
-    
+
     // Set to true when the view has actually been inflated in its layout.
     boolean mInLayout;
 
     // True if this fragment has been restored from previously saved state.
     boolean mRestored;
-    
+
     // Number of active back stack entries this fragment is in.
     int mBackStackNesting;
-    
+
     // The fragment manager we are associated with.  Set as soon as the
     // fragment is used in a transaction; cleared after it has been removed
     // from all transactions.
@@ -237,29 +237,29 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
     // was dynamically added to the view hierarchy, or the ID supplied in
     // layout.
     int mFragmentId;
-    
+
     // When a fragment is being dynamically added to the view hierarchy, this
     // is the identifier of the parent container it is being added to.
     int mContainerId;
-    
+
     // The optional named tag for this fragment -- usually used to find
     // fragments that are not part of the layout.
     String mTag;
-    
+
     // Set to true when the app has requested that this fragment be hidden
     // from the user.
     boolean mHidden;
-    
+
     // Set to true when the app has requested that this fragment be deactivated.
     boolean mDetached;
 
     // If set this fragment would like its instance retained across
     // configuration changes.
     boolean mRetainInstance;
-    
+
     // If set this fragment is being retained across the current config change.
     boolean mRetaining;
-    
+
     // If set this fragment has menu items to contribute.
     boolean mHasMenu;
 
@@ -268,30 +268,30 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
 
     // Used to verify that subclasses call through to super class.
     boolean mCalled;
-    
+
     // If app has requested a specific animation, this is the one to use.
     int mNextAnim;
-    
+
     // The parent container of the fragment after dynamically added to UI.
     ViewGroup mContainer;
-    
+
     // The View generated for this fragment.
     View mView;
-    
+
     // The real inner view that will save/restore state.
     View mInnerView;
 
     // Whether this fragment should defer starting until after other fragments
     // have been started and their loaders are finished.
     boolean mDeferStart;
-    
+
     // Hint provided by the app that this fragment is currently visible to the user.
     boolean mUserVisibleHint = true;
 
     LoaderManagerImpl mLoaderManager;
     boolean mLoadersStarted;
     boolean mCheckedForLoaderManager;
-    
+
     /**
      * State information that has been retrieved from a fragment instance
      * through {@link FragmentManager#saveFragmentInstanceState(Fragment)
@@ -465,16 +465,14 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
     /**
      * Subclasses can not override equals().
      */
-    @Override
-    final public boolean equals(Object o) {
+    @Override final public boolean equals(Object o) {
         return super.equals(o);
     }
 
     /**
      * Subclasses can not override hashCode().
      */
-    @Override
-    final public int hashCode() {
+    @Override final public int hashCode() {
         return super.hashCode();
     }
 
@@ -622,7 +620,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
     /**
      * Return a localized formatted string from the application's package's
      * default string table, substituting the format arguments as defined in
-     * {@link java.util.Formatter} and {@link java.lang.String#format}.
+     * {@link java.util.Formatter} and {@link String#format}.
      *
      * @param resId Resource id for the format string
      * @param formatArgs The format arguments that will be used for substitution.

@@ -25,11 +25,11 @@ import android.view.*;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.*;
-import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.internal.nineoldandroids.animation.Animator;
 import com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator;
-import com.actionbarsherlock.internal.nineoldandroids.widget.NineHorizontalScrollView;
+import com.actionbarsherlock.internal.nineoldandroids.wiget.NineHorizontalScrollView;
+import com.github.mobile.R;
 
 /**
  * This widget implements the dynamic action bar tab behavior that can change
@@ -54,7 +54,7 @@ public class ScrollingTabContainerView extends NineHorizontalScrollView
     protected Animator mVisibilityAnim;
     protected final VisibilityAnimListener mVisAnimListener = new VisibilityAnimListener();
 
-    private static final /*Time*/Interpolator sAlphaInterpolator = new DecelerateInterpolator();
+    private static final /*Time*/ Interpolator sAlphaInterpolator = new DecelerateInterpolator();
 
     private static final int FADE_DURATION = 200;
 
@@ -121,6 +121,7 @@ public class ScrollingTabContainerView extends NineHorizontalScrollView
     /**
      * Indicates whether this view is collapsed into a dropdown menu instead
      * of traditional tabs.
+     *
      * @return true if showing as a spinner
      */
     private boolean isCollapsed() {
@@ -266,7 +267,7 @@ public class ScrollingTabContainerView extends NineHorizontalScrollView
 
     private TabView createTabView(ActionBar.Tab tab, boolean forAdapter) {
         //Workaround for not being able to pass a defStyle on pre-3.0
-        final TabView tabView = (TabView)mInflater.inflate(R.layout.abs__action_bar_tab, null);
+        final TabView tabView = (TabView) mInflater.inflate(R.layout.abs__action_bar_tab, null);
         tabView.init(this, tab, forAdapter);
 
         if (forAdapter) {

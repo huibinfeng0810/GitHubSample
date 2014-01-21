@@ -24,7 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.actionbarsherlock.R;
+import com.github.mobile.R;
 
 /**
  * The item view for each item in the ListView-based MenuViews.
@@ -56,12 +56,12 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
         mContext = context;
 
         TypedArray a =
-            context.obtainStyledAttributes(
-                attrs, R.styleable.SherlockMenuView, defStyle, 0);
+                context.obtainStyledAttributes(
+                        attrs, R.styleable.SherlockMenuView, defStyle, 0);
 
         mBackground = a.getDrawable(R.styleable.SherlockMenuView_itemBackground);
         mTextAppearance = a.getResourceId(R.styleable.
-                                          SherlockMenuView_itemTextAppearance, -1);
+                SherlockMenuView_itemTextAppearance, -1);
         mPreserveIconSpacing = a.getBoolean(
                 R.styleable.SherlockMenuView_preserveIconSpacing, false);
         mTextAppearanceContext = context;
@@ -82,7 +82,7 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
         mTitleView = (TextView) findViewById(R.id.abs__title);
         if (mTextAppearance != -1) {
             mTitleView.setTextAppearance(mTextAppearanceContext,
-                                         mTextAppearance);
+                    mTextAppearance);
         }
 
         mShortcutView = (TextView) findViewById(R.id.abs__shortcut);
@@ -243,7 +243,7 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
         LayoutInflater inflater = getInflater();
         mRadioButton =
                 (RadioButton) inflater.inflate(R.layout.abs__list_menu_item_radio,
-                this, false);
+                        this, false);
         addView(mRadioButton);
     }
 
@@ -251,7 +251,7 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
         LayoutInflater inflater = getInflater();
         mCheckBox =
                 (CheckBox) inflater.inflate(R.layout.abs__list_menu_item_checkbox,
-                this, false);
+                        this, false);
         addView(mCheckBox);
     }
 

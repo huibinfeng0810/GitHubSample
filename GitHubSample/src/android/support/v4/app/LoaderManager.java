@@ -147,8 +147,8 @@ public abstract class LoaderManager {
     /**
      * Stops and removes the loader with the given ID.  If this loader
      * had previously reported data to the client through
-     * {@link LoaderCallbacks#onLoadFinished(Loader, Object)}, a call
-     * will be made to {@link LoaderCallbacks#onLoaderReset(Loader)}.
+     * {@link LoaderCallbacks#onLoadFinished(android.support.v4.content.Loader, Object)}, a call
+     * will be made to {@link LoaderCallbacks#onLoaderReset(android.support.v4.content.Loader)}.
      */
     public abstract void destroyLoader(int id);
 

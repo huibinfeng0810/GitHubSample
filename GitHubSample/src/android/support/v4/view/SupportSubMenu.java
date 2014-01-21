@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2013 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-package android.support.v4.app;
-
-import android.app.Activity;
-
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
+package android.support.v4.view;
 
 /**
- * Implementation of activity compatibility that can call Honeycomb APIs.
+ * Subclass of {@link SupportMenu} for sub menus.
+ *
+ * This version extends the one available in the framework to ensures that any necessary
+ * elements added in later versions of the framework, are available for all platforms.
+ *
+ * @see android.view.SubMenu
+ * @hide
  */
-class ActivityCompatHoneycomb {
-    static void invalidateOptionsMenu(Activity activity) {
-        activity.invalidateOptionsMenu();
-    }
-
-    static void dump(Activity activity, String prefix, FileDescriptor fd,
-            PrintWriter writer, String[] args) {
-        activity.dump(prefix, fd, writer, args);
-    }
+public interface SupportSubMenu extends SupportMenu, android.view.SubMenu {
 }

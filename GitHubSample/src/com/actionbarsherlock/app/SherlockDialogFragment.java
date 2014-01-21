@@ -1,12 +1,12 @@
 package com.actionbarsherlock.app;
 
 import android.app.Activity;
-import android.support.v4.app.DialogFragment;
 import com.actionbarsherlock.internal.view.menu.MenuItemWrapper;
 import com.actionbarsherlock.internal.view.menu.MenuWrapper;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import android.support.v4.app.DialogFragment;
 
 import static android.support.v4.app.Watson.*;
 
@@ -22,7 +22,7 @@ public class SherlockDialogFragment extends DialogFragment implements OnCreateOp
         if (!(activity instanceof SherlockFragmentActivity)) {
             throw new IllegalStateException(getClass().getSimpleName() + " must be attached to a SherlockFragmentActivity.");
         }
-        mActivity = (SherlockFragmentActivity)activity;
+        mActivity = (SherlockFragmentActivity) activity;
 
         super.onAttach(activity);
     }

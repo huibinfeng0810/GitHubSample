@@ -8,14 +8,15 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import com.actionbarsherlock.ActionBarSherlock;
-import com.actionbarsherlock.R;
+import com.github.mobile.R;
 import org.xmlpull.v1.XmlPullParser;
 
 public final class ResourcesCompat {
     private static final String TAG = "ResourcesCompat";
 
     //No instances
-    private ResourcesCompat() {}
+    private ResourcesCompat() {
+    }
 
 
     /**
@@ -24,8 +25,8 @@ public final class ResourcesCompat {
      * qualifiers on pre-3.2.
      *
      * @param context Context to load booleans from on 4.0+ and to fetch the
-     * display metrics.
-     * @param id Id of boolean to load.
+     *                display metrics.
+     * @param id      Id of boolean to load.
      * @return Associated boolean value as reflected by the current display
      * metrics.
      */
@@ -72,8 +73,8 @@ public final class ResourcesCompat {
      * can use to simulate filtering based on width qualifiers on pre-3.2.
      *
      * @param context Context to load integers from on 3.2+ and to fetch the
-     * display metrics.
-     * @param id Id of integer to load.
+     *                display metrics.
+     * @param id      Id of integer to load.
      * @return Associated integer value as reflected by the current display
      * metrics.
      */
@@ -129,7 +130,8 @@ public final class ResourcesCompat {
                         if (ActionBarSherlock.DEBUG) Log.d(TAG, "Got <application>");
 
                         for (int i = xml.getAttributeCount() - 1; i >= 0; i--) {
-                            if (ActionBarSherlock.DEBUG) Log.d(TAG, xml.getAttributeName(i) + ": " + xml.getAttributeValue(i));
+                            if (ActionBarSherlock.DEBUG)
+                                Log.d(TAG, xml.getAttributeName(i) + ": " + xml.getAttributeValue(i));
 
                             if ("logo".equals(xml.getAttributeName(i))) {
                                 logo = xml.getAttributeResourceValue(i, 0);
@@ -144,7 +146,8 @@ public final class ResourcesCompat {
                         boolean isOurActivity = false;
 
                         for (int i = xml.getAttributeCount() - 1; i >= 0; i--) {
-                            if (ActionBarSherlock.DEBUG) Log.d(TAG, xml.getAttributeName(i) + ": " + xml.getAttributeValue(i));
+                            if (ActionBarSherlock.DEBUG)
+                                Log.d(TAG, xml.getAttributeName(i) + ": " + xml.getAttributeValue(i));
 
                             //We need both uiOptions and name attributes
                             String attrName = xml.getAttributeName(i);
